@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecurePix - Encrypt & Decrypt Images</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 SecurePix</h1>
+        <p>Protect your sensitive images with smart AI-powered encryption</p>
+
+        <div class="form-container">
+            <form action="/encrypt" method="post" enctype="multipart/form-data">
+                <h2>Encrypt Image</h2>
+                <input type="file" name="image" required>
+                <input type="password" name="password" placeholder="Enter encryption password" required>
+                <div class="image-preview"></div>
+                <button type="submit">Encrypt & Download</button>
+            </form>
+
+            <form action="/decrypt" method="post" enctype="multipart/form-data">
+                <h2>Decrypt Image</h2>
+                <input type="file" name="image" required>
+                <input type="password" name="password" placeholder="Enter decryption password" required>
+                <div class="image-preview"></div>
+                <button type="submit">Decrypt & Download</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

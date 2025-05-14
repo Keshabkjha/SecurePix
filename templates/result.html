@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result - SecurePix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Processing Complete</h1>
+
+        {% if label != "N/A" %}
+            <p><strong>Detected Label:</strong> {{ label }}</p>
+            <p><strong>Domain:</strong> {{ domain }}</p>
+        {% endif %}
+
+        <div class="image-preview">
+            <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Processed Image">
+        </div>
+
+        <a href="{{ url_for('download_file', filename=image_file) }}">
+            <button>📥 Download Image</button>
+        </a>
+
+        <br><br>
+        <a href="/"><button>🔁 Process Another Image</button></a>
+    </div>
+</body>
+</html>
