@@ -69,21 +69,14 @@ function showToast(message, isError = false) {
 }
 
 
-    function previewImage(input, previewId) {
-        const preview = document.getElementById(previewId);
-        preview.innerHTML = "";
-    
-        if (input.files && input.files[0]) {
-            const img = document.createElement("img");
-            img.src = URL.createObjectURL(input.files[0]);
-            img.onload = () => URL.revokeObjectURL(img.src);
-            img.style.maxWidth = "100%";
-            img.style.maxHeight = "200px";
-            img.style.borderRadius = "12px";
-            img.style.marginTop = "10px";
-            preview.appendChild(img);
-        }
-    }
+function previewImage(file, container) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        container.innerHTML = `<img src="${e.target.result}" alt="Preview" />`;
+    };
+    reader.readAsDataURL(file);
+}
 });
 const themeToggle = document.getElementById("theme-toggle");
 const savedTheme = localStorage.getItem("theme");
