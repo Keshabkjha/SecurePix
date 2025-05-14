@@ -1,6 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
     const forms = document.querySelectorAll("form");
+    document.body.style.opacity = 0;
+    setTimeout(() => {
+        document.body.style.transition = "opacity 0.6s ease";
+        document.body.style.opacity = 1;
+    }, 100);
+    window.addEventListener("pageshow", () => {
+        hideLoader();
+    });
 
+    // Attach event listener for flash messages if rendered via Flask
+    const toastData = document.getElementById("toast").dataset;
+    if (toastData.message) {
+        showToast(toastData.message, toastData.type === "error");
+    }
     forms.forEach(form => {
         const fileInput = form.querySelector('input[type="file"]');
         const previewContainer = form.querySelector('.image-preview');
@@ -29,12 +42,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function previewImage(file, container) {
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            container.innerHTML = `<img src="${e.target.result}" alt="Preview" />`;
-        };
-        reader.readAsDataURL(file);
+
+    // Show the loader overlay
+function showLoader() {
+    const loader = document.getElementById("loader");
+    loader.classList.remove("hidden");
+}
+
+// Hide loader overlay
+function hideLoader() {
+    const loader = document.getElementById("loader");
+    loader.classList.add("hidden");
+}
+
+// Show toast notification
+function showToast(message, isError = false) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.backgroundColor = isError ? "#e53935" : "#1a73e8";
+    toast.style.display = "block";
+
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 4000);
+}
+
+
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        preview.innerHTML = "";
+    
+        if (input.files && input.files[0]) {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(input.files[0]);
+            img.onload = () => URL.revokeObjectURL(img.src);
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "200px";
+            img.style.borderRadius = "12px";
+            img.style.marginTop = "10px";
+            preview.appendChild(img);
+        }
     }
 });

@@ -15,7 +15,7 @@
         {% endif %}
 
         <div class="image-preview">
-            <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Processed Image">
+            <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Processed Image" onclick="openModal(this.src)">
         </div>
 
         <a href="{{ url_for('download_file', filename=image_file) }}">
@@ -25,5 +25,23 @@
         <br><br>
         <a href="/"><button>🔁 Process Another Image</button></a>
     </div>
+
+    <!-- Modal for fullscreen image preview -->
+    <div id="modal" class="image-modal">
+        <img id="modal-img" class="modal-img">
+    </div>
+
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById("modal");
+            const img = document.getElementById("modal-img");
+            img.src = src;
+            modal.style.display = "flex";
+        }
+
+        document.getElementById("modal").addEventListener("click", () => {
+            document.getElementById("modal").style.display = "none";
+        });
+    </script>
 </body>
 </html>
