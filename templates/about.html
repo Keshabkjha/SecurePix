@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}About - SecurePix{% endblock %}
+
+{% block content %}
+<div class="container about-page fade-in">
+    <h1 class="animated-title">ℹ️ About SecurePix</h1>
+    <p>
+        <strong>SecurePix</strong> is a powerful AI-driven encryption platform that secures your images 
+        with cutting-edge chaotic maps and intelligent classification.
+    </p>
+    <ul class="feature-list">
+        <li>🔐 End-to-end encryption using chaotic systems: Logistic, Circle, Ikeda</li>
+        <li>🧠 AI-powered image classification (ResNet50)</li>
+        <li>📊 Domain detection: Medical, Legal, Surveillance, Personal, Financial</li>
+        <li>📁 No server storage – your files are never saved</li>
+        <li>⚡ Real-time encryption/decryption interface</li>
+        <li>🎨 User-friendly animated UI with responsive design</li>
+        <li>🚀 Optimized for speed, security, and simplicity</li>
+    </ul>
+    
+    <button class="expand-btn" onclick="toggleSection('workflow', this)">🧭 <span class="btn-text">How It Works</span> <span class="arrow">▼</span></button>
+    <div id="workflow" class="collapsible-section hidden">
+        <ol>
+            <li>🖼️ Upload your image securely (drag & drop supported)</li>
+            <li>🧬 Choose a chaotic map + custom password</li>
+            <li>🔒 Encrypt with one click</li>
+            <li>🧠 Auto-classify image domain with ResNet50</li>
+            <li>⬇️ Download encrypted image securely</li>
+        </ol>
+    </div>
+
+    <button class="expand-btn" onclick="toggleSection('usecases', this)">🎯 <span class="btn-text">Real-World Use Cases</span> <span class="arrow">▼</span></button>
+    <div id="usecases" class="collapsible-section hidden">
+        <ul>
+            <li>🏥 Hospitals encrypting patient reports & scans</li>
+            <li>🏛️ Legal firms protecting evidence images</li>
+            <li>🏢 Enterprises storing confidential project images</li>
+            <li>📷 Personal privacy protection on the go</li>
+        </ul>
+    </div>
+
+    <button class="expand-btn" onclick="toggleSection('funfacts', this)">💡 <span class="btn-text">Fun Facts</span> <span class="arrow">▼</span></button>
+    <div id="funfacts" class="collapsible-section hidden">
+        <ul>
+            <li>🔁 Chaotic encryption ensures each output is unique — even with the same image & password</li>
+            <li>🧠 Trained on over 10,000 categorized images for AI accuracy</li>
+            <li>⚡ Encryption completes in under 2 seconds on average</li>
+        </ul>
+    </div>
+
+    <button class="expand-btn" onclick="toggleSection('testimonials', this)">🗣️ <span class="btn-text">What Users Say</span> <span class="arrow">▼</span></button>
+    <div id="testimonials" class="collapsible-section hidden">
+        <blockquote>"Absolutely love the concept! The encryption is fast and seamless." – <em>Devanshi, Cybersecurity Student</em></blockquote>
+        <blockquote>"Feels like magic – AI + encryption without giving my data to a server!" – <em>Ravi, Developer</em></blockquote>
+        <blockquote>"Finally, a solution that puts privacy back in our hands." – <em>Trisha, Lawyer</em></blockquote>
+    </div>
+    <div class="tech-stack-toggle">
+        <button onclick="toggleSection('details', this)" class="expand-btn">🔽 <span class="btn-text">Click to Reveal More Features</span> <span class="arrow">▼</span></button>
+        <div id="details" class="details hidden">
+            <p>SecurePix leverages:</p>
+            <ul>
+                <li>📦 <strong>Flask</strong> for backend routing and logic</li>
+                <li>🖼️ <strong>OpenCV</strong> for image preprocessing</li>
+                <li>🔒 <strong>Custom chaotic key generation</strong> tied to passwords</li>
+                <li>📊 <strong>TensorFlow</strong> for domain prediction</li>
+                <li>📱 Responsive UI built with HTML5, CSS3, JS and animations</li>
+                <li>📈 Integrated with client-only logic for max security</li>
+            </ul>
+        </div>
+    </div>
+
+    <p style="margin-top: 20px;">Built with ❤️ using <strong>Python</strong>, <strong>Flask</strong>, <strong>TensorFlow</strong>, <strong>OpenCV</strong>, and <strong>JavaScript</strong>.</p>
+</div>
+
+<script>
+    function toggleSection(id, btn) {
+        const section = document.getElementById(id);
+        section.classList.toggle("hidden");
+
+        // Update arrow for all buttons
+        if (btn && btn.querySelector(".arrow")) {
+            const arrow = btn.querySelector(".arrow");
+            arrow.textContent = section.classList.contains("hidden") ? "▼" : "▲";
+        }
+    }
+
+    function toggleDetails() {
+        const btn = document.querySelector('.tech-stack-toggle button');
+        toggleSection("details", btn);
+    }
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SecurePix{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">🔐 SecurePix</div>
+        <nav>
+            
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="#encrypt">Encrypt</a></li>
+                <li><a href="#decrypt">Decrypt</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <button id="theme-toggle" aria-label="Toggle Theme">🌓</button>
+
+            </ul>
+        </nav>
+    </header>
+    <div id="loader" class="hidden">
+        <div class="spinner"></div>
+    </div>
+    
+    <div id="toast" data-message="" data-type=""></div>
+    
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; {{ 2025 }} SecurePix. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

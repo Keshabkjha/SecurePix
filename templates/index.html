@@ -1,64 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SecurePix - Image Encryption & Decryption</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Loading Spinner -->
-    <div id="loader" class="loader-overlay hidden">
-        <div class="spinner"></div>
+{% extends "base.html" %}
+{% block title %}SecurePix - Home{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="main-title">Image Encryption & Decryption</h1>
+    <p class="subtitle">Protect your sensitive images with advanced encryption</p>
+
+    <div class="form-container">
+        <form id="encrypt" action="/encrypt" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+            <h2>🔒 Encrypt</h2>
+            <div class="image-preview" id="preview-encrypt"></div>
+            <input type="file" name="image" accept="image/*" required onchange="previewImage(this, 'preview-encrypt')">
+            <input type="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Encrypt Image</button>
+        </form>
+
+        <form id="decrypt" action="/decrypt" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+            <h2>🔓 Decrypt</h2>
+            <div class="image-preview" id="preview-decrypt"></div>
+            <input type="file" name="image" accept="image/*" required onchange="previewImage(this, 'preview-decrypt')">
+            <input type="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Decrypt Image</button>
+        </form>
     </div>
-
-    <!-- Toast -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">🔐 SecurePix</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="#encrypt">Encrypt</a></li>
-                <li><a href="#decrypt">Decrypt</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Container -->
-    <div class="container">
-        <h1 class="main-title">Image Encryption & Decryption</h1>
-        <p class="subtitle">Protect your sensitive images with advanced encryption</p>
-
-        <div class="form-container">
-            <!-- Encrypt Form -->
-            <form id="encrypt" action="/encrypt" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
-                <h2>🔒 Encrypt</h2>
-                <div class="image-preview" id="preview-encrypt"></div>
-                <input type="file" name="image" accept="image/*" required onchange="previewImage(this, 'preview-encrypt')">
-                <input type="password" name="password" placeholder="Enter password" required>
-                <button type="submit">Encrypt Image</button>
-            </form>
-
-            <!-- Decrypt Form -->
-            <form id="decrypt" action="/decrypt" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
-                <h2>🔓 Decrypt</h2>
-                <div class="image-preview" id="preview-decrypt"></div>
-                <input type="file" name="image" accept="image/*" required onchange="previewImage(this, 'preview-decrypt')">
-                <input type="password" name="password" placeholder="Enter password" required>
-                <button type="submit">Decrypt Image</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; {{ year or 2025 }} SecurePix. All rights reserved.</p>
-    </footer>
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+</div>
+{% endblock %}

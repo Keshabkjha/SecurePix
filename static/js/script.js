@@ -85,3 +85,15 @@ function showToast(message, isError = false) {
         }
     }
 });
+const themeToggle = document.getElementById("theme-toggle");
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const newTheme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
+});

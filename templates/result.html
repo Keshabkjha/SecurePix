@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Result - SecurePix</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>🔒 Processing Complete</h1>
+{% extends "base.html" %}
+{% block title %}Result - SecurePix{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>🔒 Processing Complete</h1>
 
-        {% if label != "N/A" %}
-            <p><strong>Detected Label:</strong> {{ label }}</p>
-            <p><strong>Domain:</strong> {{ domain }}</p>
-        {% endif %}
+    {% if label != "N/A" %}
+        <p><strong>Detected Label:</strong> {{ label }}</p>
+        <p><strong>Domain:</strong> {{ domain }}</p>
+    {% endif %}
 
-        <div class="image-preview">
-            <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Processed Image" onclick="openModal(this.src)">
-        </div>
-
-        <a href="{{ url_for('download_file', filename=image_file) }}">
-            <button>📥 Download Image</button>
-        </a>
-
-        <br><br>
-        <a href="/"><button>🔁 Process Another Image</button></a>
+    <div class="image-preview">
+        <img src="{{ url_for('uploaded_file', filename=image_file) }}" alt="Processed Image" onclick="openModal(this.src)">
     </div>
 
-    <!-- Modal for fullscreen image preview -->
+    <a href="{{ url_for('download_file', filename=image_file) }}">
+        <button>📥 Download Image</button>
+    </a>
+
+    <br><br>
+    <a href="/"><button>🔁 Process Another Image</button></a>
+
     <div id="modal" class="image-modal">
         <img id="modal-img" class="modal-img">
     </div>
+</div>
 
-    <script>
-        function openModal(src) {
-            const modal = document.getElementById("modal");
-            const img = document.getElementById("modal-img");
-            img.src = src;
-            modal.style.display = "flex";
-        }
+<script>
+    function openModal(src) {
+        const modal = document.getElementById("modal");
+        const img = document.getElementById("modal-img");
+        img.src = src;
+        modal.style.display = "flex";
+    }
 
-        document.getElementById("modal").addEventListener("click", () => {
-            document.getElementById("modal").style.display = "none";
-        });
-    </script>
-</body>
-</html>
+    document.getElementById("modal").addEventListener("click", () => {
+        document.getElementById("modal").style.display = "none";
+    });
+</script>
+{% endblock %}

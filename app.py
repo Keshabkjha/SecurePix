@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 import os
 from utils import encrypt_image_flow, decrypt_image_flow, predict_image_label, get_domain_from_label
-
+from datetime import datetime
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', year=datetime.now().year)
 
 @app.route('/encrypt', methods=['POST'])
 def encrypt():
@@ -44,6 +44,9 @@ def decrypt():
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
+@app.route('/about')
+def about():
+    return render_template("about.html", year=datetime.now().year)
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
