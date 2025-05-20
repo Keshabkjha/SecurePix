@@ -8,7 +8,10 @@
 SecurePix is an advanced image encryption and classification system that combines state-of-the-art encryption techniques with intelligent image classification. This web application provides a secure way to encrypt and decrypt images while automatically categorizing them based on their content.
 
 
-[![Watch the video](https://github.com/user-attachments/assets/dc3bfec9-efcd-465b-95c6-c197a38aa716)](https://youtu.be/w7iQKkCyY-M)
+
+
+https://github.com/user-attachments/assets/98578b62-6216-4bce-be77-d618c7b839e3
+
 
 
 ## Key Features
